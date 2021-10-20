@@ -13,7 +13,7 @@ void push(char x)
     struct Node *t;
     t = (struct Node *)malloc(sizeof(struct Node));
     if(t == NULL)
-        printf("Stack is Overflow\n");
+        printf("Stack Overflow(Memory Not Sufficient)\n");
     else
     {
         t->data = x;
@@ -27,7 +27,7 @@ char pop()
     char x = -1;
     struct Node *p;
     if(top == NULL)
-        printf("Stack is Underflow\n");
+        printf("Stack Underflow(Stack is empty)\n");
     else
     {
         p=top;
@@ -43,7 +43,7 @@ int isEmpty()
     return top?0:1;
 }
 
-char stackTop()
+char Top()
 {
     if(!isEmpty())
         return top->data;
@@ -61,11 +61,11 @@ int isBalanced(char *exp)
         {
             if(isEmpty())
                 return 0;
-            if(stackTop() == '(' && exp[i] == ')')
+            if(Top() == '(' && exp[i] == ')')
                 pop();
-            else if(stackTop() == '{' && exp[i] == '}')
+            else if(Top() == '{' && exp[i] == '}')
                 pop();
-            else if(stackTop() == '[' && exp[i] == ']')
+            else if(Top() == '[' && exp[i] == ']')
                 pop();
             else
                 return 0;
@@ -78,21 +78,52 @@ int isBalanced(char *exp)
 }
 
 
-int main()
-{
+int main(){
     char *exp;
-    int t;
-    scanf("%d",&t);
-    while(t--)
-    {
-        exp = (char*)malloc(10000*sizeof(char));
-        scanf("%s",exp);
-        if(isBalanced(exp))
-            printf("YES\n");
-        else 
-            printf("NO\n");
-        free(exp);
-        while (!isEmpty()) pop();
+    exp = (char*)malloc(10000*sizeof(char));
+    printf("Enter 1 to check a string\nEnter 2 to check a file\n");
+    int choice;
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+            printf("Enter a String:\n");
+            scanf("%s",exp);
+            break;
+        case 2:;
+            FILE *fptr;
+            char filename[100],c;
+            printf("Enter name of file:\n");
+            scanf("%s",filename);
+             fptr = fopen(filename, "r");
+             if (fptr == NULL)
+             {
+                 printf("Cannot open file \n");
+                 exit(0);
+             }
+             //Read contents from file
+             c = fgetc(fptr);
+             int len=0;
+             while (c != EOF)
+             {
+                 exp[len]=c;
+                 len++;
+                 c = fgetc(fptr);
+             }
+             fclose(fptr);
+             break;
+             default:
+                printf("Invalid Input");
+                exit(0);   
     }
+        
+
+
+    if(isBalanced(exp))
+        printf("The pairs and the orders of parenthesis in the given input are balanced\n");
+    else 
+        printf("The pairs and the orders of parenthesis in the given input are not balanced\n");
+    free(exp);
+    
     return 0;
+
 }
