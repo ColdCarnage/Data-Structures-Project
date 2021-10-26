@@ -13,5 +13,5 @@ Implement a Queue in order to execute the process in your operating system based
 ## Team Members:
 - Ramasubramanyam P
 - Praveen R
-- Nagarjunan 
+- Nagarjunan G
 - Kirthi Vignesh G 
