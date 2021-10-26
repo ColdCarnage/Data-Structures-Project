@@ -81,7 +81,7 @@ int main(){
     while(c=='y'){
         printf("Enter the priority and command to be executed:");
         scanf("%d",&priority);
-        scanf("%[^\n]",com);
+        gets(com);
         append(&head, priority,com);
         printf("\nDo you want to continue adding commands[y/n]:");
         scanf("%c",&c);
