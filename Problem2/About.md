@@ -1,0 +1,2 @@
+# **Process Queue**
+In this program we implement a Queue in order to execute the process in your operating system based on the priority. The process with highest priority will be executed first always. Once the process is executed the same will be removed from queue. We acheive this by using max heap data structure.
