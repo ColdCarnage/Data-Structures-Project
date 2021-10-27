@@ -79,11 +79,11 @@ int main(){
 
     int priority;
     while(c=='y'){
-        printf("Enter the priority and command to be executed:");
+        printf("Enter the priority and command to be executed(Space-seperated):\n");
         scanf("%d",&priority);
         gets(com);
         append(&head, priority,com);
-        printf("\nDo you want to continue adding commands[y/n]:");
+        printf("Do you want to continue adding commands[y/n]:");
         scanf("%c",&c);
     }
     Sort(head);
